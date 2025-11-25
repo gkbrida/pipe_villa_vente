@@ -6,7 +6,7 @@ from joblib import load
 import dill
 
 
-with open("pipe_villa_vente/pipe.pkl", "rb") as f:
+with open("pipe.pkl", "rb") as f:
     pipe = dill.load(f)
 
 app = FastAPI(title="Predicteur du prix de villa en vente")

@@ -3,9 +3,10 @@ from pydantic import BaseModel
 import pandas as pd
 import numpy as np
 from joblib import load
+from real_estate_pipeline import RealEstatePipeline
 
 # Charger le modèle
-saved = load("pipe.joblib")
+pipeline = load("pipe.joblib")
 
 app = FastAPI(title="Predicteur du prix de villa en vente")
 
@@ -43,7 +44,6 @@ def predict_price(data: InputData):
     df = pd.DataFrame([data.dict()])
 
     # Prédiction
-    pipeline = saved['best_model_']
     pred = pipeline.predict(df)[0]
 
     return {"prediction": float(pred)}

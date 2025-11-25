@@ -40,10 +40,10 @@ class InputData(BaseModel):
     titreFoncier :int
 
 @app.post("/")
-def predict_price(data: InputData):
+def predict_price(data):
     # Convertir en DataFrame avec une seule ligne
-    df = pd.DataFrame([data.dict()])
+    df = pd.DataFrame(data)
     
     # Prédiction
-    pred = pipe.predict(df)[0]
+    pred = pipe.predict(df)
     return {"prediction": float(pred)}
